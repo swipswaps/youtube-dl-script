@@ -12,3 +12,5 @@ done < "$input"
 for file in ./download/*; do
   $_converter -i "./download/${file##*/}" "./mp3/${file##*/}.mp3"
 done
+
+rm ./download/*
