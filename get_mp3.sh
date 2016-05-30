@@ -9,6 +9,8 @@ do
   $_downloader -o "./download/%(title)s" "$var"
 done < "$input"
 
+mkdir -p ./mp3
+
 for file in ./download/*; do
   $_converter -i "./download/${file##*/}" "./mp3/${file##*/}.mp3"
 done
