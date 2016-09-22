@@ -4,15 +4,7 @@ input="url_list"
 _downloader="youtube-dl"
 _converter="ffmpeg"
 
-while IFS= read -r var
-do
-  $_downloader -o "./download/%(title)s" "$var"
-done < "$input"
+$_downloader -c --extract-audio --audio-format mp3 --audio-quality 160K --title --batch-file=$input --restrict-filenames
 
 mkdir -p ./mp3
-
-for file in ./download/*; do
-  $_converter -i "./download/${file##*/}" "./mp3/${file##*/}.mp3"
-done
-
-rm ./download/*
+mv *.mp3 ./mp3
